@@ -3,7 +3,7 @@
  Simples projeto de conversão de dados xlsx para SQL usando python e pandas
 
 ## Banco de dados
-O banco de dados utilizado nesse projeto foi o PostreSQL, sendo necessário o driver de conectividade psycopg-bynary!
+O banco de dados utilizado nesse projeto foi o PostreSQL, sendo necessário o driver de conectividade psycopg2-bynary!
 
 ## Intruções para uso!
 
