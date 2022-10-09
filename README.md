@@ -18,4 +18,24 @@ DB_NAME=
 DB_USER=
 DB_PASS=
 ```
-Aí é só adicionar seus dados e usar tranquilamente!
+Para utilizar exatamente como está nesse código precisara criar uma tabela da seguiunta forma em seu banco de dados:
+```
+create table testes(
+	id serial primary key,
+	category varchar(15) not null,
+	name varchar(25) not null,
+	price numeric not null,
+	desc_price numeric not null,
+	sku varchar not null,
+	route varchar(255) not null,
+	img_main text not null,
+	img_front text not null,
+	img_right text not null,
+	img_left text not null,
+	img_back text not null,
+	highlights boolean default 'FALSE' not null,
+	is_available boolean default 'TRUE' not null
+)
+
+```
+E agora é só utilizar 
