@@ -39,6 +39,7 @@ for i, DADOS in enumerate(planilha['id']):
     # print(sql)
     
     try:
+        #Aqui cairá apenas produtos novos a serem inseridos
         cursor = conn.cursor()
         
         cursor.execute(sql)
@@ -46,7 +47,7 @@ for i, DADOS in enumerate(planilha['id']):
         print("NOVO PRODUTO INSERIDO COM SUCESSO")
         
     except:
-        print('PRODUTO COM ID JÁ EXISTENTE!!')
+        # Aqui irá cair os produtos que já existem
         continue
     
 conn.close()
