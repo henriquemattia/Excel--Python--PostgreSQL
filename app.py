@@ -92,12 +92,11 @@ for i, DADOS in enumerate(planilha['id']):
     declaração = "UPDATE testes SET "
     filtro = f" WHERE id = {id} "
     unificando = declaração + i + c + n + p + d_p + s + r + i_m + i_f + i_r + i_l + i_b + h + is_a + filtro
-    print(unificando)
+    # print(unificando)
     
     # popular dados
     try:
         cursor.execute(unificando)
-        print('chegou aqui!!!!!!!!!!!!!!!!!!!!!!')
         conn.commit()
     except:
         continue
