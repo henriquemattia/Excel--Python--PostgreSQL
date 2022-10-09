@@ -11,6 +11,8 @@ conn = psycopg2.connect(host=os.environ["DB_HOST"],
                               password=os.environ["DB_PASS"])
 cursor = conn.cursor()
 
+#          INSERIR NOVOS DADOS NA TABELA
+
 planilha = pd.read_excel("products.xlsx")
 
 for i, DADOS in enumerate(planilha['id']):
@@ -40,3 +42,34 @@ for i, DADOS in enumerate(planilha['id']):
         continue
     
 conn.close()
+
+
+
+#           ATUALIZAR DADOS NA TABELA
+
+
+planilha = pd.read_excel("products.xlsx")
+
+for i, DADOS in enumerate(planilha['id']):
+    id = planilha.loc[i,"id"]
+    category = planilha.loc[i,"category"]
+    name = planilha.loc[i,"name"]
+    price = planilha.loc[i,"price"]
+    desc_price = planilha.loc[i,"desc_price"]
+    sku = planilha.loc[i,"sku"]
+    route = planilha.loc[i,"route"]
+    img_main = planilha.loc[i,"img_main"]
+    img_front = planilha.loc[i,"img_front"]
+    img_right = planilha.loc[i,"img_right"]
+    img_left = planilha.loc[i,"img_left"]
+    img_back = planilha.loc[i,"img_back"]
+    highlighs = planilha.loc[i,"highlighs"]
+    is_available = planilha.loc[i,"is_available"]    
+    
+    
+    i = f"id = {id}, "
+    c = f"category = '{category}', "
+    n = f"name = '{name}', "
+    p = f"price = {price}, "
+    d_p = f"desc_price = {desc_price}, "
+    s = f"sku = '{sku}', "
