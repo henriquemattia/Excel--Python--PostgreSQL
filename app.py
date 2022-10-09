@@ -28,11 +28,11 @@ for i, DADOS in enumerate(planilha['id']):
     img_right = planilha.loc[i,"img_right"]
     img_left = planilha.loc[i,"img_left"]
     img_back = planilha.loc[i,"img_back"]
-    highlighs = planilha.loc[i,"highlighs"]
+    highlights = planilha.loc[i,"highlights"]
     is_available = planilha.loc[i,"is_available"]      
     
     comando = "insert into public.testes (id, category, name, price, desc_price, sku, route, img_main, img_front, img_right, img_left, img_back, highlights, is_available) VALUES "
-    dados = f"({id}, '{category}', '{name}', {price}, {desc_price}, '{sku}', '{route}','{img_main}', '{img_front}', '{img_right}', '{img_left}', '{img_back}', {highlighs}, {is_available})"
+    dados = f"({id}, '{category}', '{name}', {price}, {desc_price}, '{sku}', '{route}','{img_main}', '{img_front}', '{img_right}', '{img_left}', '{img_back}', {highlights}, {is_available})"
     sql = comando + dados
     # print(sql)
     try:
@@ -46,6 +46,13 @@ conn.close()
 
 
 #           ATUALIZAR DADOS NA TABELA
+
+load_dotenv()
+conn = psycopg2.connect(host=os.environ["DB_HOST"],
+                              dbname=os.environ["DB_NAME"],
+                              user=os.environ["DB_USER"],
+                              password=os.environ["DB_PASS"])
+cursor = conn.cursor()
 
 
 planilha = pd.read_excel("products.xlsx")
@@ -63,7 +70,7 @@ for i, DADOS in enumerate(planilha['id']):
     img_right = planilha.loc[i,"img_right"]
     img_left = planilha.loc[i,"img_left"]
     img_back = planilha.loc[i,"img_back"]
-    highlighs = planilha.loc[i,"highlighs"]
+    highlights = planilha.loc[i,"highlights"]
     is_available = planilha.loc[i,"is_available"]    
     
     
@@ -73,3 +80,27 @@ for i, DADOS in enumerate(planilha['id']):
     p = f"price = {price}, "
     d_p = f"desc_price = {desc_price}, "
     s = f"sku = '{sku}', "
+    r = f"route = '{route}', "
+    i_m = f"img_main = '{img_main}', "
+    i_f = f"img_front = '{img_front}', "
+    i_r = f"img_right = '{img_right}', "
+    i_l = f"img_left = '{img_left}', "
+    i_b = f"img_back = '{img_back}', "
+    h = f"highlights = {highlights}, "
+    is_a = f"is_available = {is_available} "
+    
+    declaração = "UPDATE testes SET "
+    filtro = f" WHERE id = {id} "
+    unificando = declaração + i + c + n + p + d_p + s + r + i_m + i_f + i_r + i_l + i_b + h + is_a + filtro
+    print(unificando)
+    
+    # popular dados
+    try:
+        cursor.execute(unificando)
+        print('chegou aqui!!!!!!!!!!!!!!!!!!!!!!')
+        conn.commit()
+    except:
+        continue
+    
+conn.close() 
+        
